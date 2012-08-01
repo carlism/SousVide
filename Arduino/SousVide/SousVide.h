@@ -1,3 +1,5 @@
+#include "Arduino.h"
+
 #define INC_BUTTON 6
 #define DEC_BUTTON 7
 #define ONE_WIRE_BUS 10

@@ -1,8 +1,11 @@
+#include "SousVide.h"
+
 #include <LiquidCrystal.h>
-#include <OneWire.h>
+// This library from http://www.pjrc.com/teensy/arduino_libraries/OneWire.zip
+#include <OneWire.h> 
+// clone this library from https://github.com/milesburton/Arduino-Temperature-Control-Library.git
 #include <DallasTemperature.h>
 
-#include "SousVide.h"
 #include "MomentaryButton.h"
 #include "floatToString.h"
 
