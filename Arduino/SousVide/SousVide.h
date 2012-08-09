@@ -1,8 +1,8 @@
 #include "Arduino.h"
 
-#define INC_BUTTON 6
-#define DEC_BUTTON 7
-#define ONE_WIRE_BUS 10
+#define INC_BUTTON 8
+#define DEC_BUTTON 9
+#define ONE_WIRE_BUS 11
 
 #define TEMPERATURE_PRECISION 9
 #define DISPLAY_DELAY 2000

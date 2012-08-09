@@ -10,14 +10,14 @@
 #include "floatToString.h"
 
 // initialize the library with the numbers of the interface pins
-LiquidCrystal lcd(12, 11, 5, 4, 3, 2);
+LiquidCrystal lcd(7, 6, 5, 4, 3, 2);
 float temp_setting = 130.0;
 MomentaryButton increaseButton(INC_BUTTON);
 MomentaryButton decreaseButton(DEC_BUTTON);
 OneWire oneWire(ONE_WIRE_BUS);
 DallasTemperature sensors(&oneWire);
 DeviceAddress waterThermometer;
-int     pump = 8;
+int     pump = 10;
 int     heater = 13;
 
 char printBuffer[25];
@@ -77,9 +77,9 @@ void setup() {
   lcd.setCursor(0, 0);
   lcd.print("Starting circulator"); 
   pinMode(pump, OUTPUT); 
-  digitalWrite(pump, HIGH);
+  digitalWrite(pump, LOW);
   pinMode(heater, OUTPUT); 
-  digitalWrite(heater, LOW);
+  digitalWrite(heater, HIGH);
   
   delay(DISPLAY_DELAY);
   lcd.clear();
@@ -108,8 +108,8 @@ void loop() {
   
   
   if(tempF >= temp_setting) {  
-    digitalWrite(heater, LOW);
-  } else {
     digitalWrite(heater, HIGH);
+  } else {
+    digitalWrite(heater, LOW);
   }
 }
