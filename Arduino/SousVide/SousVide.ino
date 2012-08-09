@@ -1,5 +1,6 @@
 #include "SousVide.h"
 
+#include<stdlib.h>
 #include <LiquidCrystal.h>
 // This library from http://www.pjrc.com/teensy/arduino_libraries/OneWire.zip
 #include <OneWire.h> 
@@ -7,7 +8,6 @@
 #include <DallasTemperature.h>
 
 #include "MomentaryButton.h"
-#include "floatToString.h"
 
 // initialize the library with the numbers of the interface pins
 LiquidCrystal lcd(7, 6, 5, 4, 3, 2);
@@ -25,13 +25,13 @@ char printBuffer[25];
 void writeReading(float reading) {
   lcd.setCursor(0, 0);
   lcd.write(TEMPCHAR);
-  lcd.print(floatToString(printBuffer,reading,2,7,true));
+  lcd.print(dtostrf(reading,7,2,printBuffer));
 }
 
 void writeSetting() {
   lcd.setCursor(0, 1);
   lcd.write(DIALCHAR);
-  lcd.print(floatToString(printBuffer,temp_setting,2,7,true));
+  lcd.print(dtostrf(temp_setting,7,2,printBuffer));
 }
 
 void setup() {
