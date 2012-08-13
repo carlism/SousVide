@@ -15,6 +15,8 @@ private:
   int lastButtonState;
   int lastReading;
   long lastDebounceTime;
+  bool heldOnce;
+  long buttonHeldStart;
 public:
   Button(int inputPin);
   void setup();
