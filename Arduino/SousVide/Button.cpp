@@ -1,7 +1,8 @@
 #include "Button.h"
 
 Button::Button(int inputPin)
-	: pin(inputPin), lastReading(LOW), lastButtonState(LOW), lastDebounceTime(0), buttonState(LOW)
+	: pin(inputPin), lastReading(LOW), lastButtonState(LOW), lastDebounceTime(0), buttonState(LOW),
+          heldOnce(false), buttonHeldStart(0)
 {}
 
 void Button::setup()
@@ -27,7 +28,21 @@ int Button::check()
 
   
   if(buttonState == HIGH && lastButtonState == LOW) {
-    result = BUTTON_CLICKED;
+    // button released
+    if(!heldOnce) {
+      result = BUTTON_CLICKED;
+    }
+  } else if(buttonState == LOW && lastButtonState == HIGH) {
+    // button pressed
+    buttonHeldStart = millis();
+    heldOnce = false;
+  } else if(buttonState == HIGH && lastButtonState == HIGH) {
+    // button held
+    if((millis() - buttonHeldStart) > HOLD_THRESHOLD) {
+      result = BUTTON_HELD;
+      buttonHeldStart = millis();
+      heldOnce = true;
+    }
   }
 
   lastButtonState = buttonState;
